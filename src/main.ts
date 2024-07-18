@@ -10,6 +10,7 @@ async function bootstrap() {
     .setDescription('The demo API description')
     .setVersion('1.0')
     .addTag('categories')
+    .addTag('products')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('docs', app, document);
