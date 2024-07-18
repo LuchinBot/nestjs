@@ -14,6 +14,7 @@ export class Category {
   image: string;
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  // updated_at que acepte null
+  @Column({ type: 'timestamp', nullable: true })
   updated_at: Date;
 }
