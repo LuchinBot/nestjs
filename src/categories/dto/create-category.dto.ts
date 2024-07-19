@@ -8,4 +8,6 @@ export class CreateCategoryDto {
   readonly description: string;
   @IsString()
   readonly image: string;
+  // Crear el created_at
+  readonly created_at: Date;
 }
