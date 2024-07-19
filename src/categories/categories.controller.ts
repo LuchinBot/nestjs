@@ -5,19 +5,28 @@ import {
   Body,
   Patch,
   Param,
-  Delete
+  Delete,
+  UploadedFile,
+  UseInterceptors
 } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { multerConfig } from 'src/config/multer.config';
 @ApiTags('categories')
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Post()
-  create(@Body() createCategoryDto: CreateCategoryDto) {
+  @UseInterceptors(FileInterceptor('image', multerConfig))
+  create(
+    @Body() createCategoryDto: CreateCategoryDto,
+    @UploadedFile() file: Express.Multer.File
+  ) {
+    createCategoryDto.image = file.path;
     return this.categoriesService.create(createCategoryDto);
   }
 
