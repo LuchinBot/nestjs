@@ -1,4 +1,10 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
 
 @Entity({ name: 'categories' })
 export class Category {
@@ -12,9 +18,9 @@ export class Category {
   description: string;
   @Column()
   image: string;
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
-  // updated_at que acepte null
-  @Column({ type: 'timestamp', nullable: true })
+
+  @UpdateDateColumn({ type: 'timestamp' })
   updated_at: Date;
 }
