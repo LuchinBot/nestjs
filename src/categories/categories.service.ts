@@ -31,10 +31,10 @@ export class CategoriesService {
   }
 
   update(id: number, updateCategoryDto: UpdateCategoryDto) {
-    return `This action updates a #${id} category`;
+    return this.categoriesRepository.update(id, updateCategoryDto);
   }
 
   async remove(id: number) {
-    return `This action removes a #${id} category`;
+    return this.categoriesRepository.delete(id);
   }
 }
