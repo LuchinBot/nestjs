@@ -12,10 +12,8 @@ export class CategoriesService {
     @InjectRepository(Category)
     private categoriesRepository: Repository<Category>
   ) {}
-  async create(createCategoryDto: CreateCategoryDto) {
-    // Lógica para crear la categoria
-    const category = this.categoriesRepository.create(createCategoryDto);
-    return this.categoriesRepository.save(category);
+  async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
+    return this.categoriesRepository.save(createCategoryDto);
   }
 
   findAll(): Promise<Category[]> {
